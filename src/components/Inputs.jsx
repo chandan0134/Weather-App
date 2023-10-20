@@ -20,6 +20,8 @@ function Inputs() {
           <button className=" text-xl text-white font-light">°F</button>
 
         </div>
+
+       
     </div>
   )
 }
