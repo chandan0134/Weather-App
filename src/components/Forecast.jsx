@@ -1,6 +1,31 @@
 import React from 'react'
+import { useState,useEffect } from "react";
 
 function Forecast({title}) {
+
+  const[WeatherData,setWeatherData]=useState([]);
+
+  useEffect(() => {
+    async function weather() {
+      try {
+        let url = `https://api.weatherbit.io/v2.0/current?lat=35.7796&lon=-78.6382&key=139b7a6925514050b84cb59636618f97&include=minutely`;
+  
+        let response = await fetch(url);
+        let parsedData = await response.json();
+        console.log(parsedData)
+      
+        // Update the data state with the fetched articles
+
+        
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    }
+
+    weather();
+  }, []);
+
+
   return (
     <div>
         <div className=" flex flex-col justify-start justify-center mt-6">
