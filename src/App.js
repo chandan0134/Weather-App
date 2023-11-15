@@ -19,9 +19,9 @@ export default function App() {
     <TopButtons/>
     <Inputs/>
     <TimeAndLocation/>
-    <TemperatureAndDetails/>
-    <Forecast title="Hourly forecast"/>
-    <Forecast title="Daily forecast"/>
+    <TemperatureAndDetails type="hourly"/>
+    <Forecast title="Hourly forecast" type="hourly"/>
+    {/* <Forecast title="Daily forecast" type="daily"/> */}
     </div>
   
   )
