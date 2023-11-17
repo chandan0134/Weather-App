@@ -1,7 +1,9 @@
-import React from 'react'
+import React from 'react';
 import { useState,useEffect } from "react";
+import Inputs from "./Inputs";
 
-function Forecast({title,type}) {
+
+function Forecast({title,type,query}) {
 
   const[WeatherData,setWeatherData]=useState([]);
 
@@ -9,7 +11,7 @@ function Forecast({title,type}) {
     async function weather() {
       try 
       {
-        let url = `https://api.weatherbit.io/v2.0/current?&city=Delhi&key=139b7a6925514050b84cb59636618f97&include=${type}`;
+        let url = `https://api.weatherbit.io/v2.0/current?&city=${encodeURIComponent(query)}&key=139b7a6925514050b84cb59636618f97&include=${type}`;
   
         let response = await fetch(url);
         let parsedData = await response.json();
@@ -22,7 +24,7 @@ function Forecast({title,type}) {
     }
 
     weather();
-  }, []);
+  }, [query, type]);
 
 
   return (

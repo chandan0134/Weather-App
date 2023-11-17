@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Inputs from "./Inputs";
 import {
   UilArrowUp,
   UilArrowDown,
@@ -9,13 +10,13 @@ import {
   UilSunset,
 } from "@iconscout/react-unicons";
 
-function TemperatureAndDetails({ type }) {
+function TemperatureAndDetails({ type,query }) {
   const [currWeatherData, setCurrWeatherData] = useState(null);
 
   useEffect(() => {
     async function currWeather() {
       try {
-        let url = `https://api.weatherbit.io/v2.0/current?&city=Delhi&key=139b7a6925514050b84cb59636618f97&include=${type}`;
+        let url = `https://api.weatherbit.io/v2.0/current?&city=${encodeURIComponent(query)}&key=139b7a6925514050b84cb59636618f97&include=${type}`;
 
         let response = await fetch(url);
         let parsedData = await response.json();
@@ -27,7 +28,7 @@ function TemperatureAndDetails({ type }) {
     }
 
     currWeather();
-  }, [type]);
+  }, [query, type]);
 
   if (!currWeatherData) {
     return <div>Loading...</div>;
@@ -69,13 +70,13 @@ function TemperatureAndDetails({ type }) {
       <div className="flex flex-row items-center justify-center space-x-1 text-white text-sm py-3">
         <UilSun />
         <p className="font-light">
-          Rise <span className="font-medium ml-1">{currWeatherData.sunrise} </span>
+          Rise <span className="font-medium ml-1">{currWeatherData.sunrise} am </span>
         </p>
         <p className="font-light">|</p>
 
         <UilSunset />
         <p className="font-light">
-          set <span className="font-medium ml-1">{currWeatherData.sunset} </span>
+          set <span className="font-medium ml-1">{currWeatherData.sunset} pm</span>
         </p>
         <p className="font-light">|</p>
 
